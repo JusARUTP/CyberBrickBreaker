@@ -1,0 +1,282 @@
+[gd_scene load_steps=12 format=3 uid="uid://qsimptdsapvp"]
+
+[ext_resource type="Script" uid="uid://clea0wuiocip3" path="res://administrador.gd" id="1_0e866"]
+[ext_resource type="PackedScene" uid="uid://cai161uq37ghk" path="res://nivel_1.tscn" id="3_fcnjq"]
+[ext_resource type="PackedScene" uid="uid://b2nflla50w0ue" path="res://nivel_2.tscn" id="4_aqgfh"]
+[ext_resource type="Texture2D" uid="uid://rlycwm1dlxoc" path="res://fondo.png" id="5_0e866"]
+[ext_resource type="PackedScene" uid="uid://b74qr6alkw3ld" path="res://nivel_3.tscn" id="5_pfiv6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0e866"]
+font_size = 40
+font_color = Color(0.19215687, 0.91764706, 0.2784314, 1)
+outline_size = 4
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.7254902)
+shadow_offset = Vector2(3, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_aqgfh"]
+font_size = 27
+font_color = Color(0.2, 0.9647059, 0.28235295, 1)
+outline_size = 2
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.7254902)
+shadow_offset = Vector2(3, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pfiv6"]
+font_color = Color(0.19215687, 0.91764706, 0.2784314, 1)
+shadow_color = Color(0, 0, 0, 0.7254902)
+
+[sub_resource type="Animation" id="Animation_0e866"]
+resource_name = "Pulso"
+loop_mode = 2
+
+[sub_resource type="Animation" id="Animation_aqgfh"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pfiv6"]
+_data = {
+&"Pulso": SubResource("Animation_0e866"),
+&"RESET": SubResource("Animation_aqgfh")
+}
+
+[node name="ManejadorJuego" type="Node2D"]
+script = ExtResource("1_0e866")
+Niveles = Array[PackedScene]([ExtResource("3_fcnjq"), ExtResource("4_aqgfh"), ExtResource("5_pfiv6")])
+
+[node name="fondo" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -296.0
+offset_right = 1153.0
+offset_bottom = 650.24
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_0e866")
+
+[node name="ManejadorUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1159.0
+offset_bottom = 653.0
+
+[node name="Score" type="Label" parent="ManejadorUI"]
+layout_mode = 0
+offset_left = 542.0
+offset_top = 11.0
+offset_right = 594.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.20784314, 0.99607843, 0.2901961, 1)
+theme_override_font_sizes/font_size = 30
+text = "Score: "
+
+[node name="Vidas" type="Label" parent="ManejadorUI"]
+layout_mode = 0
+offset_left = 1031.0
+offset_top = 43.0
+offset_right = 1120.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(1, 0.14509805, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Vidas: 3"
+
+[node name="Nivel" type="Label" parent="ManejadorUI"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 51.0
+offset_right = 95.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(0.20784314, 1, 0.2901961, 1)
+theme_override_font_sizes/font_size = 24
+text = "Nivel:"
+
+[node name="JuegoTerminado" type="Control" parent="ManejadorUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.5
+offset_top = -169.0
+offset_right = 192.5
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EtiquetaJuegoTerminado" type="Label" parent="ManejadorUI/JuegoTerminado"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -155.5
+offset_top = 113.5
+offset_right = 172.5
+offset_bottom = 168.5
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.20392157, 0.972549, 0.28627452, 1)
+text = "Juego Terminado"
+label_settings = SubResource("LabelSettings_0e866")
+horizontal_alignment = 1
+
+[node name="Puntuacion" type="Label" parent="ManejadorUI/JuegoTerminado"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -82.5
+offset_top = 185.5
+offset_right = 95.5
+offset_bottom = 240.5
+grow_horizontal = 2
+text = "Puntuación: 0"
+label_settings = SubResource("LabelSettings_aqgfh")
+horizontal_alignment = 1
+
+[node name="PresionaUnaTecla" type="Label" parent="ManejadorUI/JuegoTerminado"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -145.5
+offset_top = 265.5
+offset_right = 159.5
+offset_bottom = 320.5
+grow_horizontal = 2
+pivot_offset = Vector2(150, 14)
+text = "Presiona cualquier tecla para continuar"
+label_settings = SubResource("LabelSettings_pfiv6")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ManejadorUI/JuegoTerminado"]
+libraries = {
+&"": SubResource("AnimationLibrary_pfiv6")
+}
+
+[node name="MenuInicio" type="Control" parent="ManejadorUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.5
+offset_top = -169.0
+offset_right = 192.5
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menu" type="Label" parent="ManejadorUI/MenuInicio"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -155.5
+offset_top = 113.5
+offset_right = 172.5
+offset_bottom = 168.5
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.20392157, 0.972549, 0.28627452, 1)
+text = "CYBER BRICK BREAKER"
+label_settings = SubResource("LabelSettings_0e866")
+horizontal_alignment = 1
+
+[node name="Jugar" type="Button" parent="ManejadorUI/MenuInicio"]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 223.5
+offset_right = 276.0
+offset_bottom = 255.5
+text = "Jugar"
+
+[node name="Salir" type="Button" parent="ManejadorUI/MenuInicio"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 273.5
+offset_right = 275.0
+offset_bottom = 305.5
+text = "Salir"
+
+[node name="JuegoTerminado2" type="Control" parent="ManejadorUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.5
+offset_top = -169.0
+offset_right = 192.5
+offset_bottom = 169.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EtiquetaJuegoTerminado" type="Label" parent="ManejadorUI/JuegoTerminado2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "JUEGO
+COMPLETADO"
+label_settings = SubResource("LabelSettings_0e866")
+horizontal_alignment = 1
+
+[node name="Puntuacion" type="Label" parent="ManejadorUI/JuegoTerminado2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -84.5
+offset_top = 139.5
+offset_right = 93.5
+offset_bottom = 194.5
+grow_horizontal = 2
+text = "Puntuación: 0"
+label_settings = SubResource("LabelSettings_aqgfh")
+horizontal_alignment = 1
+
+[node name="PresionaUnaTecla" type="Label" parent="ManejadorUI/JuegoTerminado2"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -141.5
+offset_top = 344.5
+offset_right = 163.5
+offset_bottom = 399.5
+grow_horizontal = 2
+pivot_offset = Vector2(150, 14)
+text = "Presiona cualquier tecla para salir"
+label_settings = SubResource("LabelSettings_pfiv6")
+horizontal_alignment = 1
+
+[node name="Agradecimientos" type="Label" parent="ManejadorUI/JuegoTerminado2"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.5
+offset_top = 225.5
+offset_right = 157.5
+offset_bottom = 280.5
+grow_horizontal = 2
+pivot_offset = Vector2(150, 14)
+text = "¡MUCHAS GRACIAS POR JUGAR!"
+label_settings = SubResource("LabelSettings_pfiv6")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ManejadorUI/JuegoTerminado2"]
+libraries = {
+&"": SubResource("AnimationLibrary_pfiv6")
+}

@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://df1a2tfp8wnrk"]
+
+[ext_resource type="Script" uid="uid://e43y0kwopimy" path="res://bola.gd" id="1_6ycda"]
+[ext_resource type="Texture2D" uid="uid://slle2wpbeqj" path="res://pelota.png" id="2_6ycda"]
+[ext_resource type="AudioStream" uid="uid://clmm42hhvmfrp" path="res://rebote.mp3" id="3_dp8pa"]
+[ext_resource type="AudioStream" uid="uid://wv74bl7ha4pu" path="res://ladrillo.mp3" id="4_pdcmq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fcnjq"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a1ukp"]
+radius = 15.0
+
+[node name="Bola" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_fcnjq")
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_6ycda")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(-6.0000076, 13.999994)
+scale = Vector2(0.059919845, 0.058000006)
+texture = ExtResource("2_6ycda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 14)
+shape = SubResource("CircleShape2D_a1ukp")
+
+[node name="Rebote" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dp8pa")
+
+[node name="Romper" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_pdcmq")

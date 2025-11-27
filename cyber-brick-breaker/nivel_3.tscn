@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://b74qr6alkw3ld"]
+
+[ext_resource type="Script" uid="uid://dnowvypaacua5" path="res://ManejadorNivel.gd" id="1_foow7"]
+[ext_resource type="PackedScene" uid="uid://df1a2tfp8wnrk" path="res://bola.tscn" id="2_ai75a"]
+[ext_resource type="Script" uid="uid://bu2uklk6hoqai" path="res://paleta.gd" id="2_ol0td"]
+[ext_resource type="PackedScene" uid="uid://qytg8j1w2bo2" path="res://ladrillo.tscn" id="4_1col5"]
+[ext_resource type="Texture2D" uid="uid://bi0hyaw2kq5kl" path="res://paleta.png" id="4_ol0td"]
+[ext_resource type="AudioStream" uid="uid://6xli4o2p5kxa" path="res://3.mp3" id="6_ai75a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vby2x"]
+size = Vector2(346, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcnjq"]
+size = Vector2(1167.5, 10)
+
+[node name="Nivel 3" type="Node2D"]
+script = ExtResource("1_foow7")
+Bola = ExtResource("2_ai75a")
+
+[node name="Paleta" type="CharacterBody2D" parent="."]
+position = Vector2(461, 609)
+script = ExtResource("2_ol0td")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paleta"]
+position = Vector2(122.49998, 0)
+scale = Vector2(0.40818703, 0.16)
+texture = ExtResource("4_ol0td")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paleta"]
+position = Vector2(123, 0)
+shape = SubResource("RectangleShape2D_vby2x")
+
+[node name="Ladrillo" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(553, 55)
+
+[node name="Ladrillo2" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(722, 88)
+
+[node name="Ladrillo3" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(415, 172)
+
+[node name="Ladrillo4" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(105, 140)
+
+[node name="Ladrillo5" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(172, 186)
+
+[node name="Ladrillo6" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(238, 238)
+
+[node name="Ladrillo7" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(896, 256)
+
+[node name="Ladrillo8" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(835, 305)
+
+[node name="Ladrillo9" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(766, 356)
+
+[node name="Ladrillo10" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(375, 358)
+
+[node name="Ladrillo11" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(456, 357)
+
+[node name="Ladrillo12" parent="." groups=["Ladrillo"] instance=ExtResource("4_1col5")]
+position = Vector2(545, 363)
+
+[node name="ParedSuperior" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedSuperior"]
+position = Vector2(571.5, -5)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="PlanoEliminarcionInferior" type="StaticBody2D" parent="." groups=["Eliminar"]]
+position = Vector2(11, 659)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlanoEliminarcionInferior"]
+position = Vector2(567.75, -6)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="."]
+position = Vector2(11, 659)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzquierda"]
+position = Vector2(570, -15.999975)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="ParedDerecha" type="StaticBody2D" parent="."]
+position = Vector2(1164, 659)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDerecha"]
+position = Vector2(572, -7)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="PuntoGenerarBola" type="Marker2D" parent="." groups=["PuntoGenerarBola"]]
+position = Vector2(582, 532)
+
+[node name="MusicaNivel3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ai75a")
+autoplay = true

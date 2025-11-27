@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2nflla50w0ue"]
+
+[ext_resource type="Script" uid="uid://dnowvypaacua5" path="res://ManejadorNivel.gd" id="1_p4qdr"]
+[ext_resource type="Script" uid="uid://bu2uklk6hoqai" path="res://paleta.gd" id="2_lj8fh"]
+[ext_resource type="PackedScene" uid="uid://df1a2tfp8wnrk" path="res://bola.tscn" id="2_tnojt"]
+[ext_resource type="PackedScene" uid="uid://qytg8j1w2bo2" path="res://ladrillo.tscn" id="4_es3ns"]
+[ext_resource type="Texture2D" uid="uid://bi0hyaw2kq5kl" path="res://paleta.png" id="4_lj8fh"]
+[ext_resource type="AudioStream" uid="uid://c23d6g3mp4ynu" path="res://2.mp3" id="6_tnojt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vby2x"]
+size = Vector2(330, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcnjq"]
+size = Vector2(1163, 10)
+
+[node name="Nivel 2" type="Node2D"]
+script = ExtResource("1_p4qdr")
+Bola = ExtResource("2_tnojt")
+
+[node name="Paleta" type="CharacterBody2D" parent="."]
+position = Vector2(469, 605)
+script = ExtResource("2_lj8fh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paleta"]
+position = Vector2(113.99997, 0)
+scale = Vector2(0.38596487, 0.16)
+texture = ExtResource("4_lj8fh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paleta"]
+position = Vector2(115, 0)
+shape = SubResource("RectangleShape2D_vby2x")
+
+[node name="Ladrillo" parent="." groups=["Ladrillo"] instance=ExtResource("4_es3ns")]
+position = Vector2(545, 106)
+
+[node name="Ladrillo2" parent="." groups=["Ladrillo"] instance=ExtResource("4_es3ns")]
+position = Vector2(544, 148)
+
+[node name="Ladrillo3" parent="." groups=["Ladrillo"] instance=ExtResource("4_es3ns")]
+position = Vector2(460, 191)
+
+[node name="Ladrillo4" parent="." groups=["Ladrillo"] instance=ExtResource("4_es3ns")]
+position = Vector2(544, 192)
+
+[node name="Ladrillo5" parent="." groups=["Ladrillo"] instance=ExtResource("4_es3ns")]
+position = Vector2(635, 192)
+
+[node name="Ladrillo6" parent="." groups=["Ladrillo"] instance=ExtResource("4_es3ns")]
+position = Vector2(459, 240)
+
+[node name="Ladrillo7" parent="." groups=["Ladrillo"] instance=ExtResource("4_es3ns")]
+position = Vector2(547, 240)
+
+[node name="Ladrillo8" parent="." groups=["Ladrillo"] instance=ExtResource("4_es3ns")]
+position = Vector2(637, 240)
+
+[node name="Ladrillo9" parent="." groups=["Ladrillo"] instance=ExtResource("4_es3ns")]
+position = Vector2(729, 239)
+
+[node name="Ladrillo10" parent="." groups=["Ladrillo"] instance=ExtResource("4_es3ns")]
+position = Vector2(378, 240)
+
+[node name="ParedSuperior" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedSuperior"]
+position = Vector2(571.5, -5)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="PlanoEliminarcionInferior" type="StaticBody2D" parent="." groups=["Eliminar"]]
+position = Vector2(11, 659)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlanoEliminarcionInferior"]
+position = Vector2(571, -7)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="."]
+position = Vector2(11, 659)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzquierda"]
+position = Vector2(570, -15.999975)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="ParedDerecha" type="StaticBody2D" parent="."]
+position = Vector2(1164, 659)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDerecha"]
+position = Vector2(571, -8)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="PuntoGenerarBola" type="Marker2D" parent="." groups=["PuntoGenerarBola"]]
+position = Vector2(582, 532)
+
+[node name="MusicaNivel2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_tnojt")
+autoplay = true

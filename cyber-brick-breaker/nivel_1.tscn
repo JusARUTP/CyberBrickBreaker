@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://cai161uq37ghk"]
+
+[ext_resource type="Script" uid="uid://dnowvypaacua5" path="res://ManejadorNivel.gd" id="1_m2gv8"]
+[ext_resource type="Script" uid="uid://bu2uklk6hoqai" path="res://paleta.gd" id="2_320mp"]
+[ext_resource type="PackedScene" uid="uid://df1a2tfp8wnrk" path="res://bola.tscn" id="2_kd3qp"]
+[ext_resource type="PackedScene" uid="uid://qytg8j1w2bo2" path="res://ladrillo.tscn" id="4_6epq6"]
+[ext_resource type="Texture2D" uid="uid://bi0hyaw2kq5kl" path="res://paleta.png" id="4_320mp"]
+[ext_resource type="AudioStream" uid="uid://cundgicid3wnv" path="res://m1.mp3" id="6_kd3qp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vby2x"]
+size = Vector2(317, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcnjq"]
+size = Vector2(1173.5, 10)
+
+[node name="Nivel 1" type="Node2D"]
+script = ExtResource("1_m2gv8")
+Bola = ExtResource("2_kd3qp")
+
+[node name="Paleta" type="CharacterBody2D" parent="."]
+position = Vector2(474, 603)
+script = ExtResource("2_320mp")
+
+[node name="Sprite2D" type="Sprite2D" parent="Paleta"]
+position = Vector2(108.50001, 0)
+scale = Vector2(0.37076023, 0.16)
+texture = ExtResource("4_320mp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Paleta"]
+position = Vector2(108.5, 0)
+shape = SubResource("RectangleShape2D_vby2x")
+
+[node name="Ladrillo" parent="." groups=["Ladrillo"] instance=ExtResource("4_6epq6")]
+position = Vector2(426, 136)
+
+[node name="Ladrillo2" parent="." groups=["Ladrillo"] instance=ExtResource("4_6epq6")]
+position = Vector2(500, 136)
+
+[node name="Ladrillo3" parent="." groups=["Ladrillo"] instance=ExtResource("4_6epq6")]
+position = Vector2(574, 136)
+
+[node name="Ladrillo4" parent="." groups=["Ladrillo"] instance=ExtResource("4_6epq6")]
+position = Vector2(646, 135)
+
+[node name="ParedSuperior" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedSuperior"]
+position = Vector2(571.5, -5)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="PlanoEliminarcionInferior" type="StaticBody2D" parent="." groups=["Eliminar"]]
+position = Vector2(11, 659)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlanoEliminarcionInferior"]
+position = Vector2(565.75, -7)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="ParedIzquierda" type="StaticBody2D" parent="."]
+position = Vector2(11, 659)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedIzquierda"]
+position = Vector2(569, -15.999975)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="ParedDerecha" type="StaticBody2D" parent="."]
+position = Vector2(1164, 659)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedDerecha"]
+position = Vector2(571, -8)
+shape = SubResource("RectangleShape2D_fcnjq")
+
+[node name="PuntoGenerarBola" type="Marker2D" parent="." groups=["PuntoGenerarBola"]]
+position = Vector2(582, 532)
+
+[node name="MusicaNivel1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_kd3qp")
+autoplay = true
